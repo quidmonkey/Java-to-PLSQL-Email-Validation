@@ -40,7 +40,17 @@ CREATE OR REPLACE FUNCTION f_java_wrapper RETURN VARCHAR2
 ```
 Included in this repo is a sample function for calling the EmailValidation class. It shows you how to pass-in parameters.
 
-## 5. Summary
+## 5. Permissions
+
+If this is the first time you're attempting something like this in Oracle, you'll get a error asking you to specify socket permissions. You'll need to run this:
+```sql
+exec dbms_java.grant_permission( 'YOUR_USERNAME', 'SYS:java.net.SocketPermission', 'localhost:1024-', 'listen, resolve' );
+```
+Oracle may also specify a domain:port different from the default localhost:1024-, so pay attention to any errors you get.
+
+Once you've been granted the proper the permissions, make sure you end and restart your session to apply the changes.
+
+## 6. Summary
 
 And that's it!
 
